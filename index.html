@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Daur Ulang Plastik</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #28a745, #ffcc00, #00aaff); /* Hijau, Oranye, Biru */
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .result p {
+            margin: 5px 0;
+        }
+
+        .extra-buttons {
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Styling untuk informasi tambahan */
+        .info {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .info p {
+            font-size: 1.2rem;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Kalkulator Daur Ulang Plastik</h2>
+        <label for="plastik">Masukkan jumlah plastik (kg):</label>
+        <input type="number" id="plastik" placeholder="Masukkan jumlah plastik (kg)">
+        <button onclick="hitung()">Hitung Jumlah Produk</button>
+
+        <div class="result" id="result">
+            <p>Jumlah Kotak Pensil: <span id="jumlah-produk"></span></p>
+            <button onclick="tampilkanPenjualan()">Lihat Uang Hasil Penjualan</button>
+            <div class="extra-buttons">
+                <button onclick="tampilkanModal()">Lihat Modal</button>
+                <button onclick="tampilkanKeuntungan()">Lihat Keuntungan</button>
+            </div>
+        </div>
+
+        <div class="info" id="uang-penjualan">
+            <p>Uang Hasil Penjualan: Rp <span id="hasil-penjualan"></span></p>
+        </div>
+        <div class="info" id="modal">
+            <p>Total Modal: Rp <span id="total-modal"></span></p>
+        </div>
+        <div class="info" id="untung">
+            <p>Total Keuntungan: Rp <span id="total-untung"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function hitung() {
+            var jumlahPlastik = document.getElementById("plastik").value;
+            var jumlahKotak = jumlahPlastik * 16;
+            document.getElementById("jumlah-produk").innerHTML = jumlahKotak;
+            document.getElementById("result").style.display = "block";
+            document.getElementById("uang-penjualan").style.display = "none"; // Sembunyikan uang penjualan
+            document.getElementById("modal").style.display = "none"; // Sembunyikan modal
+            document.getElementById("untung").style.display = "none"; // Sembunyikan untung
+        }
+
+        function tampilkanPenjualan() {
+            var jumlahPlastik = document.getElementById("plastik").value;
+            var hasilPenjualan = jumlahPlastik * 80000;
+            document.getElementById("hasil-penjualan").innerHTML = hasilPenjualan;
+            document.getElementById("uang-penjualan").style.display = "block";
+            document.querySelector('.extra-buttons').style.display = "flex";
+            document.getElementById("modal").style.display = "none"; // Sembunyikan modal
+            document.getElementById("untung").style.display = "none"; // Sembunyikan untung
+        }
+
+        function tampilkanModal() {
+            var jumlahPlastik = document.getElementById("plastik").value;
+            var totalModal = jumlahPlastik * 5000;
+            document.getElementById("total-modal").innerHTML = totalModal;
+            document.getElementById("modal").style.display = "block";
+            document.getElementById("untung").style.display = "none"; // Sembunyikan untung
+            document.getElementById("uang-penjualan").style.display = "none"; // Sembunyikan uang penjualan
+        }
+
+        function tampilkanKeuntungan() {
+            var jumlahPlastik = document.getElementById("plastik").value;
+            var totalUntung = jumlahPlastik * 75000;
+            document.getElementById("total-untung").innerHTML = totalUntung;
+            document.getElementById("untung").style.display = "block";
+            document.getElementById("modal").style.display = "none"; // Sembunyikan modal
+            document.getElementById("uang-penjualan").style.display = "none"; // Sembunyikan uang penjualan
+        }
+    </script>
+</body>
+</html>
